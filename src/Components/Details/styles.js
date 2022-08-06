@@ -7,7 +7,6 @@ export const DetailStyles = styled.section`
   height: 100%;
   /* width: 400px; */
   padding: 0.8rem 2rem;
-  animation: arrive 0.4s ease-out 0.3s forwards;
 
   form {
     display: grid;
@@ -52,6 +51,9 @@ export const DetailStyles = styled.section`
   section {
     margin-top: 6rem;
     border-bottom: 1px solid #cbcbcb;
+    animation: grow 0.5s ease-out forwards;
+    animation-delay: 1s;
+    opacity: 0;
 
     h2 {
       font-size: 2.2rem;
@@ -64,6 +66,18 @@ export const DetailStyles = styled.section`
 
       .value {
         color: #ffffff;
+        animation: arrive 0.2s ease-out forwards;
+        opacity: 0;
+        position: relative;
+        @keyframes arrive {
+          from {
+            top: 10px;
+          }
+          to {
+            opacity: 1;
+            top: 0;
+          }
+        }
       }
     }
   }
