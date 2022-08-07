@@ -1,23 +1,27 @@
 import styled from "styled-components";
 
 export const FooterStyles = styled.div`
-/* position: absolute; */
-/* left: 0;
-right: 0; */
-/* bottom: .8rem; */
-margin-top: 5rem;
-/* border: 1px solid wheat; */
-text-align: center;
-/* right: 50%; */
-
-.icon {
+  /* margin-top: 5rem; */
+  text-align: center;
+  animation: arriveFooter .4s ease-out forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+  @keyframes arriveFooter {
+    from {
+      margin-top: 20px;
+    }
+    to {
+      margin-top: 5rem;
+      opacity: 1;
+    }
+  }
+  .icon {
     color: #ffffff;
     font-size: 24px;
     margin: 0 15px;
-}
+  }
 
-@media (max-width: 800px) {
-        margin-top: 4rem;
-        /* top: 20px */
-    }
-`
+  @media (max-width: 800px) {
+    margin-top: 4rem;
+  }
+`;

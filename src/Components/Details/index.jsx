@@ -5,7 +5,8 @@ import { ForecastContext } from "../../Context/ForecastContext";
 import { Footer } from "../Footer";
 
 export const Details = () => {
-  const { setCity, data, handleForecastRequest } = useContext(ForecastContext);
+  const { setCity, data, requestError, handleForecastRequest } =
+    useContext(ForecastContext);
 
   return (
     <DetailStyles>
@@ -20,33 +21,57 @@ export const Details = () => {
         </button>
       </form>
       <section>
-        <h2>Details</h2>
-        <div>
-          <span>Status</span>
-          {data ? <span className="value">{data.current.summary}</span> : ""}
-        </div>
-        <div>
-          <span>Temperature</span>
-          {data ? <span className="value">{data.current.temperature + "°C"}</span> : ""}
-        </div>
-        <div>
-          <span>Cloudy</span>
-          {data ? <span className="value">{data.current.cloud_cover + "%"}</span> : ""}
-        </div>
-        <div>
-          <span>Winds</span>
-          {data ? <span className="value">{data.current.wind.speed + "kph"}</span> : ""}
-        </div>
-        <div>
-          <span>Rain</span>
-          {data ? (
-            <span className="value">{data.current.precipitation.total + "mm"}</span>
-          ) : (
-            ""
-          )}
-        </div>
+        {requestError ? (
+          <h3>City not found</h3>
+        ) : (
+          <>
+            <h2>Details</h2>
+            <div>
+              <span>Status</span>
+              {data ? (
+                <span className="value">{data.current.summary}</span>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <span>Temperature</span>
+              {data ? (
+                <span className="value">{data.current.temperature + "°C"}</span>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <span>Cloudy</span>
+              {data ? (
+                <span className="value">{data.current.cloud_cover + "%"}</span>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <span>Winds</span>
+              {data ? (
+                <span className="value">{data.current.wind.speed + "kph"}</span>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <span>Rain</span>
+              {data ? (
+                <span className="value">
+                  {data.current.precipitation.total + "mm"}
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
+          </>
+        )}
       </section>
-      <Footer/>
+      <Footer />
     </DetailStyles>
   );
 };

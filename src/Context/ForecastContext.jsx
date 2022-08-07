@@ -18,6 +18,7 @@ export const ForecastProvider = ({ children }) => {
   const [city, setCity] = useState("");
   const [currentCity, setCurrentCity] = useState("");
   const [data, setData] = useState();
+  const [requestError, setRequestError] = useState(false)
 
   const iconSwitch = (iconCode, isSummary) => {
     switch (iconCode) {
@@ -114,20 +115,22 @@ export const ForecastProvider = ({ children }) => {
 
   const handleForecastRequest = (event) => {
     setData(undefined);
+    setRequestError(false)
     event.preventDefault();
-    api
-      .get(
-        `point?place_id=${cityCleaned}&sections=current%2Cdaily&language=en&units=ca&key=${process.env.REACT_APP_API_KEY}`
-      )
-      .then((result) => {
-        setCurrentCity(city);
-        setData(result.data);
-      });
+      api
+        .get(
+          `point?place_id=${cityCleaned}&sections=current%2Cdaily&language=en&units=ca&key=${process.env.REACT_APP_API_KEY}`
+        )
+        .then((result) => {
+          setCurrentCity(city);
+          setData(result.data);
+        })
+        .catch(error => setRequestError(true))
   };
 
   return (
     <ForecastContext.Provider
-      value={{ data, currentCity, setCity, handleForecastRequest, iconSwitch }}
+      value={{ data, currentCity, requestError, setCity, handleForecastRequest, iconSwitch }}
     >
       {children}
     </ForecastContext.Provider>
