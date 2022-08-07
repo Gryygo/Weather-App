@@ -15,7 +15,7 @@ export const DetailStyles = styled.section`
     grid-template-columns: 8fr 2fr;
     border-bottom: 1px solid #cbcbcb;
     animation: grow 0.5s ease-out forwards;
-    animation-delay: 1s;
+    animation-delay: 0.4s;
     opacity: 0;
     @keyframes grow {
       from {
@@ -52,7 +52,7 @@ export const DetailStyles = styled.section`
     margin-top: 6rem;
     border-bottom: 1px solid #cbcbcb;
     animation: grow 0.5s ease-out forwards;
-    animation-delay: 1s;
+    animation-delay: 0.4s;
     opacity: 0;
 
     h2 {

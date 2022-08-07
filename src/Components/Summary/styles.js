@@ -12,8 +12,8 @@ export const SummaryStyles = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 0 30px 20px;
-  width: 410px;
+  padding-bottom: 30px;
+  max-width: 450px;
   color: #fff;
 
   .temperature {
@@ -32,6 +32,7 @@ export const SummaryStyles = styled.div`
     .city {
       line-height: 90%;
       font-size: 2.3rem;
+      text-transform: capitalize;
       ${animationStagger(300)}
 
     }

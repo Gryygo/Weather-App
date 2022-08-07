@@ -4,10 +4,10 @@ import rain from "../../assets/rain_bg.jpg";
 import snow from "../../assets/snow_bg.jpg";
 import sunny from "../../assets/sunny_bg.jpg";
 
-const bgImage = rain;
+// const bgImage = rain;
 
 export const GeneralContainerStyles = styled.main`
-  background: url(${bgImage});
+  background-image: ${props => `url(${props.bgImage})`};
   background-position: center;
   background-size: cover;
 

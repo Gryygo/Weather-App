@@ -1,13 +1,16 @@
 import { SummaryStyles } from "./styles";
-import {
-  BsFillCloudRainFill,
-  BsFillCloudsFill,
-  BsFillSunFill,
-  BsFillCloudHailFill,
-  BsSnow,
-} from "react-icons/bs";
+// import {
+//   BsFillCloudRainFill,
+//   BsFillCloudsFill,
+//   BsFillCloudSunFill,
+//   BsFillSunFill,
+//   BsFillCloudHailFill,
+//   BsSnow,
+// } from "react-icons/bs";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useContext } from "react";
+import { ForecastContext } from "../../Context/ForecastContext";
 
 let dateInit = new Date();
 const week = [
@@ -33,12 +36,12 @@ const month = [
   "Nov",
   "Dec",
 ];
-const year = dateInit.getFullYear() - 2000
-
+const year = dateInit.getFullYear() - 2000;
 
 export const Summary = () => {
   const [hours, setHours] = useState(dateInit.getHours());
   const [minutes, setMinutes] = useState(dateInit.getMinutes());
+  const { data, currentCity, iconSwitch } = useContext(ForecastContext);
 
   useEffect(() => {
     setInterval(() => {
@@ -49,16 +52,21 @@ export const Summary = () => {
     }, 60000);
   }, []);
 
-  return (
+  return data ? (
     <SummaryStyles>
-      <h2 className="temperature">28°</h2>
+      <h2 className="temperature">{data ? Math.ceil(data.current.temperature) + "°" : ""}</h2>
       <div>
-        <p className="city">Fortaleza</p>
+        <p className="city">{currentCity}</p>
         <p className="date">
-          {hours}:{minutes < 10 ? "0"+minutes : minutes} | {week[dateInit.getDay()]} | {dateInit.getDate()} {month[dateInit.getMonth()]} {year}
+          {hours}:{minutes < 10 ? "0" + minutes : minutes} |{" "}
+          {week[dateInit.getDay()]} | {dateInit.getDate()}{" "}
+          {month[dateInit.getMonth()]} {year}
         </p>
       </div>
-      <BsFillCloudsFill className="icon" />
+      {iconSwitch(data.current.icon_num, true)}
+      {/* <BsFillCloudsFill className="icon" /> */}
     </SummaryStyles>
+  ) : (
+    ""
   );
 };
