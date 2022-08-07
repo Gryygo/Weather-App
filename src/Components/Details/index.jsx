@@ -2,6 +2,7 @@ import { DetailStyles } from "./styles";
 import { BsSearch } from "react-icons/bs";
 import { useContext } from "react";
 import { ForecastContext } from "../../Context/ForecastContext";
+import { Footer } from "../Footer";
 
 export const Details = () => {
   const { setCity, data, handleForecastRequest } = useContext(ForecastContext);
@@ -11,7 +12,7 @@ export const Details = () => {
       <form onSubmit={handleForecastRequest}>
         <input
           type="text"
-          placeholder="Search for a location"
+          placeholder="Search for a city"
           onChange={(event) => setCity(event.target.value)}
         />
         <button type="submit">
@@ -45,6 +46,7 @@ export const Details = () => {
           )}
         </div>
       </section>
+      <Footer/>
     </DetailStyles>
   );
 };

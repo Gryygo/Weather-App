@@ -9,8 +9,8 @@ export const ForecastBlkStyles = styled.div`
   color: #fff;
   background-color: rgba(17, 17, 17, 0.5);
   backdrop-filter: blur(5px);
-  animation: arrive .4s ease-out .3s forwards;
-  animation-delay: 2000;
+  animation: arrive .4s ease-out ${props => props.delay}ms forwards;
+  /* animation-delay: ${props => props.delay}ms ; */
   opacity: 0;
   @keyframes arrive {
     from {

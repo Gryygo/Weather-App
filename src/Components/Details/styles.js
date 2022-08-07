@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const DetailStyles = styled.section`
   background-color: rgba(17, 17, 17, 0.4);
   color: #ffffff;
+  position: relative;
   backdrop-filter: blur(16px);
   height: 100%;
   /* width: 400px; */
