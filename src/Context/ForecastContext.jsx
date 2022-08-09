@@ -106,6 +106,7 @@ export const ForecastProvider = ({ children }) => {
   };
 
   const cityCleaned = city
+    .trim()
     .replace(/\s/g, "-")
     .replace(/[ãáà]/g, "a")
     .replace(/[ẽéè]/g, "e")
@@ -122,7 +123,7 @@ export const ForecastProvider = ({ children }) => {
           `point?place_id=${cityCleaned}&sections=current%2Cdaily&language=en&units=ca&key=${process.env.REACT_APP_API_KEY}`
         )
         .then((result) => {
-          setCurrentCity(city);
+          setCurrentCity(city.toLowerCase());
           setData(result.data);
         })
         .catch(error => setRequestError(true))
